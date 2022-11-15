@@ -1,11 +1,27 @@
 from pymongo import MongoClient
-from dotenv import load_dotenv
-import os
-from Routers import endpoints
-load_dotenv()
+# from dotenv import load_dotenv
+from bson import json_util
+from json import loads
+# import os
+# from Routers import endpoints
+from api.config import DBURL
+# load_dotenv()
 
-client = MongoClient(os.getenv("url"))
-covid = client.get_database("covid")
-confirmed_global = covid["confirmed_global"]
-deaths_global = covid["deaths_global"]
-recovered_global = covid["recovered_global"]
+client = MongoClient(DBURL)
+
+db = client.get_database("covid")
+confirmed_global = db["confirmed_global"]
+deaths_global = db["deaths_global"]
+recovered_global = db["recovered_global"]
+
+def find_collection(collection, filter={}, project={"_id": 0}):
+    return db[collection].find(filter, project)
+
+def paginate(page=0, per_page=10):
+    def inner(mongodb_cursor):
+        data = mongodb_cursor.limit(per_page).skip(per_page*page)
+        return {
+            "page": page,
+            "results": loads(json_util.dumps(data))
+        }
+    return inner

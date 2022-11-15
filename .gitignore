@@ -1,0 +1,6 @@
+.env
+.ipynb_checkpoints
+__init__py
+__pycache__
+
+Indicaciones.md
