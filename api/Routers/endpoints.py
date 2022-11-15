@@ -4,7 +4,6 @@ from data.connection import deaths_global
 from data.connection import recovered_global
 from bson import json_util
 from json import loads
-from typing import List
 
 router = APIRouter()
 
