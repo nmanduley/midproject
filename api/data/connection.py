@@ -4,8 +4,7 @@ from bson import json_util
 from json import loads
 # import os
 # from Routers import endpoints
-from api.config import DBURL
-# load_dotenv()
+from ..config import DBURL
 
 client = MongoClient(DBURL)
 

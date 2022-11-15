@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from api.Routers import endpoints
+from .Routers import endpoints
 
 app = FastAPI()
 
@@ -9,4 +9,6 @@ app.include_router(endpoints.router)
 def test():
     return {"Test": "OK"}
 
-# sys.path.append(os.path.abspath(..)) # Donde va? 
+# import sys
+# import os
+# sys.path.append(os.path.abspath(..))
