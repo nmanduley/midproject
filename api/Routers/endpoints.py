@@ -9,7 +9,7 @@ router = APIRouter()
 
 # endpoints
 @router.get("/confirmed/{country}")
-def conf_country(country:str):
+def get_confirmed_by_country(country:str):
     filt = {"Country/Region":country}
     project = {"Country/Region":0, "Lat":0, "Long":0, "_id":0}
     dates = confirmed_global.find(filt, project)
@@ -19,7 +19,7 @@ def conf_country(country:str):
     return loads(json_util.dumps(dates))
 
 @router.get("/coordinates/{country}")
-def conf_country(country:str):
+def get_coordinates(country:str):
     filt = {"Country/Region":country}
     project = {"Lat":1, "Long":1, "_id":0}
     coords = confirmed_global.find(filt, project)
