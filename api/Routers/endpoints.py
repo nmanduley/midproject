@@ -50,3 +50,13 @@ def get_coordinates(country:str):
     if len(coords) == 0:
         return {"Error":"Empty data or no data available"}
     return loads(json_util.dumps(coords))
+
+@router.get("/countries")
+def get_countries():
+    filt = {}
+    project = {"Country/Region":1, "_id":0}
+    countries = confirmed_global.find(filt, project)
+    countries = list(countries)
+    if len(countries) == 0:
+        return {"Error":"Empty data or no data available"}
+    return loads(json_util.dumps(countries))
