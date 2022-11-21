@@ -2,9 +2,6 @@ from pymongo import MongoClient
 from bson import json_util
 from json import loads
 from ..config import DBURL
-# import os
-# from Routers import endpoints
-# from dotenv import load_dotenv
 
 client = MongoClient(DBURL)
 

@@ -51,6 +51,7 @@ def get_coordinates(country:str):
         return {"Error":"Empty data or no data available"}
     return loads(json_util.dumps(coords))
 
+
 @router.get("/countries")
 def get_countries():
     filt = {}
